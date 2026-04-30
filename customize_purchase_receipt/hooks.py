@@ -5,6 +5,26 @@ app_description = "Customize Purchase Receipt Features"
 app_email = "duxnandkishorkochkar@gmail.com"
 app_license = "mit"
 
+
+
+
+doctype_js = {
+    "Purchase Receipt": "public/js/purchase_receipt.js"
+}
+
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", [
+                "Purchase Receipt Item-custom_rate_without_tax",
+                "Purchase Receipt Item-custom_tax_percent",
+                "Purchase Receipt Item-custom_tax_amount"
+            ]]
+        ]
+    }
+]
+
 # Apps
 # ------------------
 
