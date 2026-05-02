@@ -9,7 +9,8 @@ app_license = "mit"
 
 
 doctype_js = {
-    "Purchase Receipt": "public/js/purchase_receipt.js"
+    "Purchase Receipt": "public/js/purchase_receipt.js",
+    "Purchase Order": "public/js/purchase_order.js"
 }
 
 fixtures = [
@@ -17,13 +18,38 @@ fixtures = [
         "dt": "Custom Field",
         "filters": [
             ["name", "in", [
+                # Purchase Receipt Fields
                 "Purchase Receipt Item-custom_rate_without_tax",
                 "Purchase Receipt Item-custom_tax_percent",
-                "Purchase Receipt Item-custom_tax_amount"
+                "Purchase Receipt Item-custom_tax_amount",
+
+                # Purchase Order Fields
+                "Purchase Order Item-custom_rate_without_tax",
+                "Purchase Order Item-custom_tax_percent",
+                "Purchase Order Item-custom_tax_amount"
             ]]
         ]
     }
 ]
+
+# fixtures = [
+#     {
+#         "dt": "Custom Field",
+#         "filters": [
+#             ["name", "in", [
+#                 "Purchase Receipt Item-custom_rate_without_tax",
+#                 "Purchase Receipt Item-custom_tax_percent",
+#                 "Purchase Receipt Item-custom_tax_amount"
+#             ]]
+#         ]
+#     }
+# ]
+
+
+override_whitelisted_methods = {
+    "erpnext.buying.doctype.purchase_order.purchase_order.make_purchase_receipt":
+        "customize_purchase_receipt.api.custom_make_purchase_receipt"
+}
 
 # Apps
 # ------------------
