@@ -16,5 +16,6 @@ def custom_make_purchase_receipt(source_name, target_doc=None, args=None):  # âœ
             item.custom_rate_without_tax = po_item.custom_rate_without_tax
             item.custom_tax_percent = po_item.custom_tax_percent
             item.custom_tax_amount = po_item.custom_tax_amount
+            item.custom_total_tax_amount = po_item.custom_total_tax_amount
 
     return doc

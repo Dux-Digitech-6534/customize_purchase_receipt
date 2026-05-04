@@ -22,11 +22,13 @@ fixtures = [
                 "Purchase Receipt Item-custom_rate_without_tax",
                 "Purchase Receipt Item-custom_tax_percent",
                 "Purchase Receipt Item-custom_tax_amount",
+                "Purchase Receipt Item-custom_total_tax_amount",
 
                 # Purchase Order Fields
                 "Purchase Order Item-custom_rate_without_tax",
                 "Purchase Order Item-custom_tax_percent",
-                "Purchase Order Item-custom_tax_amount"
+                "Purchase Order Item-custom_tax_amount",
+                "Purchase Order Item-custom_total_tax_amount"
             ]]
         ]
     }

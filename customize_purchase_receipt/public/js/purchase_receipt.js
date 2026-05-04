@@ -1,4 +1,3 @@
-// ✅ Child Table Calculation
 frappe.ui.form.on('Purchase Receipt Item', {
 
     custom_rate_without_tax: function(frm, cdt, cdn) {
@@ -7,27 +6,35 @@ frappe.ui.form.on('Purchase Receipt Item', {
 
     custom_tax_percent: function(frm, cdt, cdn) {
         calculate_tax_and_rate(frm, cdt, cdn);
+    },
+
+    received_qty: function(frm, cdt, cdn) {   // ✅ IMPORTANT CHANGE
+        calculate_tax_and_rate(frm, cdt, cdn);
     }
 
 });
 
 
-// ✅ Main Function
 function calculate_tax_and_rate(frm, cdt, cdn) {
 
     let row = locals[cdt][cdn];
 
-    // Safe values
     let base_rate = flt(row.custom_rate_without_tax);
     let tax_percent = flt(row.custom_tax_percent);
 
-    // 🔹 Tax Amount
+    // 🔥 correct qty field
+    let qty = flt(row.received_qty);
+
+    // Per item tax
     let tax_amount = (base_rate * tax_percent) / 100;
 
-    // 🔹 Final Rate
+    // Final rate
     let final_rate = base_rate + tax_amount;
 
-    // 🔹 Set values
+    // Total tax
+    let total_tax = tax_amount * qty;
+
     frappe.model.set_value(cdt, cdn, 'custom_tax_amount', tax_amount);
+    frappe.model.set_value(cdt, cdn, 'custom_total_tax_amount', total_tax);
     frappe.model.set_value(cdt, cdn, 'rate', final_rate);
 }
