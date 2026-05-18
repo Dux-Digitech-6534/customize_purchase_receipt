@@ -6,33 +6,95 @@ app_email = "duxnandkishorkochkar@gmail.com"
 app_license = "mit"
 
 
-
-
 doctype_js = {
     "Purchase Receipt": "public/js/purchase_receipt.js",
-    "Purchase Order": "public/js/purchase_order.js"
+    "Purchase Order": "public/js/purchase_order.js",
+    "Purchase Invoice": "public/js/purchase_invoice.js"
 }
+
+
+override_whitelisted_methods = {
+
+    # PO → Purchase Receipt
+    "erpnext.buying.doctype.purchase_order.purchase_order.make_purchase_receipt":
+    "ghr_custom.api.custom_make_purchase_receipt",
+
+    # PO → Purchase Invoice
+    "erpnext.buying.doctype.purchase_order.purchase_order.make_purchase_invoice":
+    "ghr_custom.api.custom_make_purchase_invoice",
+
+    # Purchase Receipt → Purchase Invoice
+    "erpnext.stock.doctype.purchase_receipt.purchase_receipt.make_purchase_invoice":
+    "ghr_custom.api.custom_make_pr_invoice"
+
+}
+
 
 fixtures = [
     {
         "dt": "Custom Field",
         "filters": [
             ["name", "in", [
+
+                # ==========================
                 # Purchase Receipt Fields
+                # ==========================
+
                 "Purchase Receipt Item-custom_rate_without_tax",
                 "Purchase Receipt Item-custom_tax_percent",
                 "Purchase Receipt Item-custom_tax_amount",
                 "Purchase Receipt Item-custom_total_tax_amount",
 
+                # ==========================
                 # Purchase Order Fields
+                # ==========================
+
                 "Purchase Order Item-custom_rate_without_tax",
                 "Purchase Order Item-custom_tax_percent",
                 "Purchase Order Item-custom_tax_amount",
-                "Purchase Order Item-custom_total_tax_amount"
+                "Purchase Order Item-custom_total_tax_amount",
+
+                # ==========================
+                # Purchase Invoice Fields
+                # ==========================
+
+                "Purchase Invoice Item-custom_rate_without_tax",
+                "Purchase Invoice Item-custom_tax_percent",
+                "Purchase Invoice Item-custom_tax_amount",
+                "Purchase Invoice Item-custom_total_tax_amount"
+
             ]]
         ]
     }
 ]
+
+
+
+# doctype_js = {
+#     "Purchase Receipt": "public/js/purchase_receipt.js",
+#     "Purchase Order": "public/js/purchase_order.js"
+# }
+
+# fixtures = [
+#     {
+#         "dt": "Custom Field",
+#         "filters": [
+#             ["name", "in", [
+#                 # Purchase Receipt Fields
+#                 "Purchase Receipt Item-custom_rate_without_tax",
+#                 "Purchase Receipt Item-custom_tax_percent",
+#                 "Purchase Receipt Item-custom_tax_amount",
+#                 "Purchase Receipt Item-custom_total_tax_amount",
+
+#                 # Purchase Order Fields
+#                 "Purchase Order Item-custom_rate_without_tax",
+#                 "Purchase Order Item-custom_tax_percent",
+#                 "Purchase Order Item-custom_tax_amount",
+#                 "Purchase Order Item-custom_total_tax_amount"
+#             ]]
+#         ]
+#     }
+# ]
 
 # fixtures = [
 #     {
