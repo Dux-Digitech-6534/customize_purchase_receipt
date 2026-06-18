@@ -6,27 +6,10 @@ app_email = "duxnandkishorkochkar@gmail.com"
 app_license = "mit"
 
 
-doc_events = {
-    "Material Request": {
-        "before_insert": "customize_purchase_receipt.api.check_duplicate_material_request",
-        "validate": "customize_purchase_receipt.api.validate_material_request",
-        "after_insert": "customize_purchase_receipt.api.close_material_indent",
-        "on_submit": "customize_purchase_receipt.api.update_purchase",
-    },
-     "Stock Entry": {
-        "validate": "customize_purchase_receipt.api.validate_stock_entry",
-        "on_submit": "customize_purchase_receipt.api.update_issue"
-    }
-}
-
-
-
-
 doctype_js = {
     "Purchase Receipt": "public/js/purchase_receipt.js",
     "Purchase Order": "public/js/purchase_order.js",
-    "Purchase Invoice": "public/js/purchase_invoice.js",
-    "Material Indent": "public/js/material_indent.js"
+    "Purchase Invoice": "public/js/purchase_invoice.js"
 }
 
 
@@ -79,6 +62,7 @@ fixtures = [
                 "Purchase Invoice Item-custom_tax_percent",
                 "Purchase Invoice Item-custom_tax_amount",
                 "Purchase Invoice Item-custom_total_tax_amount"
+
 
             ]]
         ]
